@@ -19,8 +19,12 @@ class LibraryItem {
         }
     }
     returnItem() {
-        console.log(`The ${this.type} "${this.title}" is returned.`);
-        this.isAvailable = true;
+        if (this.isAvailable) {
+            console.log(`The ${this.type} "${this.title}" was not lent out.`);
+        } else {
+            console.log(`The ${this.type} "${this.title}" has been returned successfully.`);
+            this.isAvailable = true;      
+        }
     }
 
     static generateNextId() {
@@ -77,11 +81,15 @@ console.log(dvd.toString());
 console.log(magazine.toString());
 
 // test the checkout method inherited from the parent class
+book.returnItem();
 book.checkOut();
 console.log(book.toString());
 book.checkOut();
+book.returnItem();
+console.log(book.toString());
 
 // test accessing and displaying unique properties of each child class
+console.log(book.author);
 console.log(book.author);
 console.log(dvd.duration);
 console.log(magazine.publisher);
